@@ -1,0 +1,37 @@
+import { hash } from "bcrypt";
+import { inject, injectable } from "tsyringe";
+import { IDateProvider } from "../../../../shared/container/providers/DateProvider/IDateProvider";
+import { AppError } from "../../../../shared/errors/AppError";
+import { IResetPassword } from "../../dtos/IResetPassword";
+import { UsersRepositories } from "../../infra/typeorm/repositories/UsersRepositories";
+import { UserTokensRepositories } from "../../infra/typeorm/repositories/UserTokensRepositories";
+
+injectable()
+export class ResetPasswordUseCase {
+
+  constructor(
+    @inject("DayjsDateProvider")
+    private dayjsDateProvider: IDateProvider
+  ) { }
+
+  async execute(data: IResetPassword): Promise<void> {
+    const userTokensRepositories = new UserTokensRepositories();
+    const usersRepositories = new UsersRepositories();
+
+    const userToken = await userTokensRepositories.findByRefreshToken(data.token);
+
+    if (!userToken)
+      throw new AppError("Token inválido");
+
+    if (this.dayjsDateProvider.compareIfBefore(userToken.expires_date, this.dayjsDateProvider.dateNow()))
+      throw new AppError("Token expirado");
+
+    const user = await usersRepositories.findById(userToken.user_id);
+
+    user.senha = await hash(data.senha, 8);
+
+    await usersRepositories.create(user);
+    await userTokensRepositories.deleteById(userToken.id);
+  }
+
+}
