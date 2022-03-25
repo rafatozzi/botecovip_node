@@ -56,7 +56,8 @@ export class UsersRepositories implements IUsersRepositories {
     const result = await this.repository.findOne({
       where: {
         id
-      }
+      },
+      relations: ["cidades"]
     });
 
     return result;

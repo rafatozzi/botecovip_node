@@ -32,7 +32,10 @@ app.use(router);
 
 app.get("/runMigrations", (request: Request, response: Response) => {
   AppDataSource.runMigrations();
-  return response.status(200).send("Migration done!")
+
+  // AppDataSource.undoLastMigration(); // revert migration
+
+  return response.status(200).send("Migration done!");
 });
 
 app.use((err: Error, request: Request, response: Response, next: NextFunction) => {

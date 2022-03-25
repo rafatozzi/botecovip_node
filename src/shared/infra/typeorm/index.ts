@@ -7,7 +7,7 @@ export const AppDataSource = new DataSource({
   username: "botecovip",
   password: "botecovip",
   database: "botecovip",
-  synchronize: true,
+  synchronize: false,
   // logging: false,
   migrations: [
     "./src/shared/infra/typeorm/migrations/*.ts"

@@ -4,11 +4,13 @@ import { container, delay } from "tsyringe";
 // INTERFACES
 import { IUsersRepositories } from "../../modules/accounts/repositories/IUsersRepositories";
 import { IUseTokensRepositories } from "../../modules/accounts/repositories/IUseTokensRepositories";
+import { ICidadesRepositories } from "../../modules/cidades/repositories/ICidadesRepositories";
 
 
 // REPOSITORIES
 import { UsersRepositories } from "../../modules/accounts/infra/typeorm/repositories/UsersRepositories";
 import { UserTokensRepositories } from "../../modules/accounts/infra/typeorm/repositories/UserTokensRepositories";
+import { CidadesRepositories } from "../../modules/cidades/infra/typeorm/repositories/CidadesRepositories";
 
 
 import { IDateProvider } from "./providers/DateProvider/IDateProvider";
@@ -22,6 +24,7 @@ import { CurrencyFormatterProvider } from "./providers/CurrencyFormatter/impleme
 
 container.registerSingleton<IUsersRepositories>("UsersRepositories", delay(() => UsersRepositories));
 container.registerSingleton<IUseTokensRepositories>("UserTokensRepositories", delay(() => UserTokensRepositories));
+container.registerSingleton<ICidadesRepositories>("CidadesRepositories", delay(() => CidadesRepositories));
 
 container.registerSingleton<IDateProvider>("DaysJsDateProvider", delay(() => DaysJsDateProvider));
 container.registerSingleton<ICurrencyFormatterProvider>("CurrencyFormatterProvider", delay(() => CurrencyFormatterProvider));
