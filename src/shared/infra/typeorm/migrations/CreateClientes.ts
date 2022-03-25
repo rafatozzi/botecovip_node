@@ -16,6 +16,10 @@ export class CreateClientes1648225427495 implements MigrationInterface {
                     type: "varchar"
                 },
                 {
+                    name: "telefone",
+                    type: "bigint(11)"
+                },
+                {
                     name: "senha",
                     type: "varchar"
                 },
