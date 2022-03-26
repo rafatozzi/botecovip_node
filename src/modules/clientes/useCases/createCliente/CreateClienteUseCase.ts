@@ -1,3 +1,4 @@
+import { hash } from "bcrypt";
 import { injectable } from "tsyringe";
 import { AppError } from "../../../../shared/errors/AppError";
 import { ICreateClientesDTO } from "../../dtos/ICreateClientesDTO";
@@ -15,6 +16,9 @@ export class CreateClienteUseCase {
 
     if (alreadyExists)
       throw new AppError("Cliente já cadastrado");
+
+    const senhaHash = await hash(data.senha, 8);
+    data.senha = senhaHash;
 
     const result = await repository.create(data);
 
