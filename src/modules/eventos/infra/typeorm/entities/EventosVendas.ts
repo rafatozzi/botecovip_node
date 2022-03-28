@@ -27,9 +27,6 @@ export class EventosVendas {
   @Column()
   forma_pgto: number;
 
-  @Column()
-  excluir: boolean;
-
   @CreateDateColumn()
   created_at: Date;
 

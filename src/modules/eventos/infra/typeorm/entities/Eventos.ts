@@ -2,6 +2,7 @@ import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, Pri
 import { v4 as uuidv4 } from "uuid";
 import { Cidades } from "../../../../cidades/infra/typeorm/entities/Cidades";
 import { EventosSetor } from "./EventosSetor";
+import { EventosVendas } from "./EventosVendas";
 
 @Entity("eventos")
 export class Eventos {
@@ -33,6 +34,9 @@ export class Eventos {
   @Column()
   obs: string;
 
+  @Column()
+  excluir: boolean;
+
   @CreateDateColumn()
   created_at: Date;
 
@@ -45,6 +49,9 @@ export class Eventos {
 
   @OneToMany(() => EventosSetor, e => e.evento)
   setores: EventosSetor[];
+
+  @OneToMany(() => EventosVendas, e => e.evento)
+  vendas: EventosVendas[];
 
   constructor() {
     if (!this.id)
