@@ -46,6 +46,10 @@ export class CreateEventos1648299318104 implements MigrationInterface {
                     type: "varchar"
                 },
                 {
+                    name: "excluir",
+                    type: "boolean"
+                },
+                {
                     name: "created_at",
                     type: "timestamp",
                     default: "now()"
