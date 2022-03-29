@@ -40,7 +40,7 @@ eventosRouter.delete("/lote", EnsureAuthenticated), deleteEventoSetorLoteControl
 eventosRouter.get("/", EnsureAuthenticated, findAllEventosController.handle);
 eventosRouter.get("/lote", EnsureAuthenticated, findLoteBySetorController.handle);
 eventosRouter.get("/setor", EnsureAuthenticated, findSetoresByEventoController.handle);
-eventosRouter.get("/vendas", EnsureAuthenticated, findVendasByEventoController.handle);
+eventosRouter.get("/vendas", findVendasByEventoController.handle);
 eventosRouter.get("/:id", EnsureAuthenticated, findEventoByIdController.handle);
 
 export { eventosRouter };
