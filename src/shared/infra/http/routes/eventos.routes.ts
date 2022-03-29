@@ -31,16 +31,16 @@ const findVendasByEventoController = new FindVendasByEventoController();
 eventosRouter.post("/", EnsureAuthenticated, createEventoController.handle);
 eventosRouter.post("/setor", EnsureAuthenticated, createEventoSetorController.handle);
 eventosRouter.post("/lote", EnsureAuthenticated, createEventoSetorLoteController.handle);
-eventosRouter.post("/venda", EnsureAuthenticated, createEventoVendaController.handle);
+eventosRouter.post("/venda", createEventoVendaController.handle);
 
 eventosRouter.delete("/", EnsureAuthenticated, deleteEventoController.handle);
 eventosRouter.delete("/setor", EnsureAuthenticated, deleteEventoSetorController.handle);
 eventosRouter.delete("/lote", EnsureAuthenticated), deleteEventoSetorLoteController.handle;
 
-eventosRouter.get("/", EnsureAuthenticated, findAllEventosController.handle);
-eventosRouter.get("/lote", EnsureAuthenticated, findLoteBySetorController.handle);
-eventosRouter.get("/setor", EnsureAuthenticated, findSetoresByEventoController.handle);
+eventosRouter.get("/", findAllEventosController.handle);
+eventosRouter.get("/lote", findLoteBySetorController.handle);
+eventosRouter.get("/setor", findSetoresByEventoController.handle);
 eventosRouter.get("/vendas", findVendasByEventoController.handle);
-eventosRouter.get("/:id", EnsureAuthenticated, findEventoByIdController.handle);
+eventosRouter.get("/:id", findEventoByIdController.handle);
 
 export { eventosRouter };
