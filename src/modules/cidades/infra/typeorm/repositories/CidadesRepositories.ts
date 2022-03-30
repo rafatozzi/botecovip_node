@@ -45,6 +45,7 @@ export class CidadesRepositories implements ICidadesRepositories {
 
     const [result, total] = await this.repository.findAndCount(
       {
+        where: { excluir: false },
         order: { estado: "ASC", nome: "ASC" },
         take: limitPage,
         skip: cursorPage

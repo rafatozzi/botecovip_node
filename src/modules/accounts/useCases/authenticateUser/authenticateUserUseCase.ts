@@ -17,6 +17,7 @@ interface IResponse {
   user: {
     nome: string;
     user: string;
+    admin: boolean;
   },
   token: string;
   refresh_token: string;
@@ -71,7 +72,8 @@ export class AuthenticateUserUseCase {
     return {
       user: {
         nome: rsUser.nome,
-        user: rsUser.user
+        user: rsUser.user,
+        admin: rsUser.admin
       },
       token,
       refresh_token
