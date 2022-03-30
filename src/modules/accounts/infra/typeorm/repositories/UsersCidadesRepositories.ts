@@ -11,10 +11,10 @@ export class UsersCidadesRepositories implements IUserCidadeRepositories {
     this.repository = AppDataSource.getRepository(UsersCidades);
   }
 
-  async findByUserIdAndCidade(id: string, idCidade: string): Promise<UsersCidades[]> {
-    const userCidades = this.repository.find({
+  async findByUserIdAndCidade(user_id: string, idCidade: string): Promise<UsersCidades[]> {
+    const userCidades = await this.repository.find({
       where: {
-        id,
+        user_id,
         id_cidade: idCidade
       }
     })

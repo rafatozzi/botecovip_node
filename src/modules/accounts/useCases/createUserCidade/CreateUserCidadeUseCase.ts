@@ -10,9 +10,11 @@ export class CreateUserCidadeUseCase {
 
   async execute(data: ICreateUserCidadeDTO): Promise<UsersCidades> {
     const repository = new UsersCidadesRepositories();
-    const alreadyExists = repository.findByUserIdAndCidade(data.id, data.id_cidade);
+    const alreadyExists = await repository.findByUserIdAndCidade(data.user_id, data.id_cidade);
 
-    if (alreadyExists)
+    console.log(alreadyExists);
+
+    if (alreadyExists.length > 0)
       throw new AppError("Cidade já cadastrada");
 
     const userCidade = repository.create(data);

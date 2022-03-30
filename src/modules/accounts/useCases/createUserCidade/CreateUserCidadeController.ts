@@ -4,7 +4,7 @@ import { ICreateUserCidadeDTO } from "../../dtos/ICreateUserCidadeDTO";
 import { CreateUserCidadeUseCase } from "./CreateUserCidadeUseCase";
 
 export class CreateUserCidadeController {
-  async handle(resquest: Request, response: Response): Promise<Response> {
+  async handle(request: Request, response: Response): Promise<Response> {
     const data = request.body as ICreateUserCidadeDTO;
 
     const useCase = container.resolve(CreateUserCidadeUseCase);

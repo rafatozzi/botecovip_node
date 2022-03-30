@@ -13,7 +13,7 @@ export class CreateUserUseCase {
     const usersRepositories = new UsersRepositories();
     const alreadyExists = await usersRepositories.findByUser(data.user);
 
-    if (alreadyExists)
+    if (!data.id && alreadyExists)
       throw new AppError("Usuário já cadastrado");
 
     if (data.senha) {
