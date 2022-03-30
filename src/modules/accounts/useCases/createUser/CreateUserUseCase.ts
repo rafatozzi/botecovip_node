@@ -16,8 +16,10 @@ export class CreateUserUseCase {
     if (alreadyExists)
       throw new AppError("Usuário já cadastrado");
 
-    const senhaHash = await hash(data.senha, 8);
-    data.senha = senhaHash;
+    if (data.senha) {
+      const senhaHash = await hash(data.senha, 8);
+      data.senha = senhaHash;
+    }
 
     await usersRepositories.create(data);
   }
