@@ -6,10 +6,10 @@ import { CreateUserUseCase } from "./CreateUserUseCase";
 
 export class CreateUserController {
   async handle(request: Request, response: Response): Promise<Response> {
-    const { nome, senha, user } = request.body as ICreateUserDTO;
+    const data = request.body as ICreateUserDTO;
     const createUserUseCase = container.resolve(CreateUserUseCase);
 
-    await createUserUseCase.execute({ nome, senha, user })
+    await createUserUseCase.execute(data)
 
     return response.status(200).send();
 

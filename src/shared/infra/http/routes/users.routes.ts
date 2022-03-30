@@ -17,9 +17,9 @@ const deleteUserCidadeController = new DeleteUserCidadeController();
 
 usersRouter.post("/", createUserController.handle);
 
-usersRouter.get("/:id", EnsureAuthenticated, profileUserController.handle);
-
 usersRouter.get("/list", EnsureAuthenticated, listUsersController.handle);
+
+usersRouter.get("/:id", EnsureAuthenticated, profileUserController.handle);
 
 usersRouter.post("/cidade", EnsureAuthenticated, createUserCidadeController.handle);
 usersRouter.delete("/cidade", EnsureAuthenticated, deleteUserCidadeController.handle);
