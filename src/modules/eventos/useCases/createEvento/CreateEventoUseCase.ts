@@ -13,7 +13,7 @@ export class CreateEventoUseCase {
 
     const alreadyExists = await repositories.findAllEventos({ data: data.data, nome: data.nome });
 
-    if (alreadyExists)
+    if (alreadyExists.total > 0)
       throw new AppError("Evento já cadastrado");
 
     const item = await repositories.create(data);
