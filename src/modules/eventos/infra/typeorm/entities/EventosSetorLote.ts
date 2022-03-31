@@ -1,4 +1,4 @@
-import { Column, CreateDateColumn, Entity, JoinColumn, ManyToMany, PrimaryColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryColumn, UpdateDateColumn } from "typeorm";
 import { v4 as uuidv4 } from "uuid";
 import { EventosSetor } from "./EventosSetor";
 
@@ -32,7 +32,7 @@ export class EventosSetorLote {
   @UpdateDateColumn()
   updated_at: Date;
 
-  @ManyToMany(() => EventosSetor)
+  @ManyToOne(() => EventosSetor)
   @JoinColumn({ name: "id_evento_setor" })
   setor: EventosSetor;
 
