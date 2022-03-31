@@ -57,7 +57,10 @@ export class UsersRepositories implements IUsersRepositories {
       where: {
         id
       },
-      relations: ["cidades"]
+      relations: [
+        "cidades",
+        "cidades.cidade"
+      ]
     });
 
     return result;
