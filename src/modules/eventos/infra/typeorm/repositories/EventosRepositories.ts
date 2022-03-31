@@ -1,4 +1,4 @@
-import { Like, Repository } from "typeorm";
+import { In, Like, Repository } from "typeorm";
 import { AppDataSource } from "../../../../../shared/infra/typeorm";
 import { ICreateEventoDTO } from "../../../dtos/ICreateEventoDTO";
 import { IFilterEventosDTO } from "../../../dtos/IFilterEventosDTO";
@@ -52,6 +52,9 @@ export class EventosRepositories implements IEventosRepositories {
 
       if (pesquisa.nome)
         where = { ...where, nome: Like(`%${pesquisa.nome}%`) };
+
+      if (pesquisa.cidades && pesquisa.cidades.length > 0)
+        where = { ...where, id_cidade: In(pesquisa.cidades) };
     }
 
     const [result, total] = await this.repository.findAndCount({
