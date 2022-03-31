@@ -15,6 +15,9 @@ export class EventosSetorLote {
   data: Date;
 
   @Column()
+  qtd_total: number;
+
+  @Column()
   valor: number;
 
   @Column()
