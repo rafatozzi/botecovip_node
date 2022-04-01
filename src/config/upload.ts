@@ -2,7 +2,7 @@ import crypto from "crypto";
 import multer from "multer";
 import { resolve } from "path";
 
-const tmpFolder = resolve(__dirname, "..", "..", "images");
+const tmpFolder = resolve(__dirname, "..", "..", "archives");
 
 export default {
   tmpFolder,

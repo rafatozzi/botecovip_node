@@ -1,4 +1,7 @@
 import { Router } from "express";
+import multer from "multer";
+import uploadConfig from "../../../../config/upload";
+
 import { CreateEventoController } from "../../../../modules/eventos/useCases/createEvento/CreateEventoController";
 import { CreateEventoSetorController } from "../../../../modules/eventos/useCases/createEventoSetor/CreateEventoSetorController";
 import { CreateEventoSetorLoteController } from "../../../../modules/eventos/useCases/createEventoSetorLote/CreateEventoSetorLoteController";
@@ -11,9 +14,11 @@ import { FindEventoByIdController } from "../../../../modules/eventos/useCases/f
 import { FindLoteBySetorController } from "../../../../modules/eventos/useCases/findLoteBySetor/FindLoteBySetorController";
 import { FindSetoresByEventoController } from "../../../../modules/eventos/useCases/findSetoresByEvento/FindSetoresByEventoController";
 import { FindVendasByEventoController } from "../../../../modules/eventos/useCases/findVendasByEvento/FindVendasByEventoController";
+import { UploadImageController } from "../../../../modules/eventos/useCases/uploadImage/UploadImageController";
 import { EnsureAuthenticated } from "../middlewares/ensureAuthenticated";
 
 const eventosRouter = Router();
+const uploadImage = multer(uploadConfig);
 
 const createEventoController = new CreateEventoController();
 const createEventoSetorController = new CreateEventoSetorController();
@@ -27,6 +32,8 @@ const findEventoByIdController = new FindEventoByIdController();
 const findLoteBySetorController = new FindLoteBySetorController();
 const findSetoresByEventoController = new FindSetoresByEventoController();
 const findVendasByEventoController = new FindVendasByEventoController();
+const uploadImageController = new UploadImageController();
+
 
 eventosRouter.post("/", EnsureAuthenticated, createEventoController.handle);
 eventosRouter.post("/setor", EnsureAuthenticated, createEventoSetorController.handle);
@@ -43,5 +50,7 @@ eventosRouter.get("/lote", findLoteBySetorController.handle);
 eventosRouter.get("/setor", findSetoresByEventoController.handle);
 eventosRouter.get("/vendas", findVendasByEventoController.handle);
 eventosRouter.get("/:id", findEventoByIdController.handle);
+
+eventosRouter.patch("/image", EnsureAuthenticated, uploadImage.single("images"), uploadImageController.handle);
 
 export { eventosRouter };

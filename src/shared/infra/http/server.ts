@@ -26,7 +26,7 @@ app.use(cors());
 
 app.use(express.json());
 
-app.use("/images", express.static(`${upload.tmpFolder}`));
+app.use("/eventoImg", express.static(`${upload.tmpFolder}/images`));
 
 app.use(router);
 
