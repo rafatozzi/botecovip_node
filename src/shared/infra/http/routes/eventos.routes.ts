@@ -36,7 +36,7 @@ eventosRouter.post("/list", findAllEventosController.handle);
 
 eventosRouter.delete("/", EnsureAuthenticated, deleteEventoController.handle);
 eventosRouter.delete("/setor", EnsureAuthenticated, deleteEventoSetorController.handle);
-eventosRouter.delete("/lote", EnsureAuthenticated), deleteEventoSetorLoteController.handle;
+eventosRouter.delete("/lote", EnsureAuthenticated, deleteEventoSetorLoteController.handle);
 
 eventosRouter.get("/", findAllEventosController.handle);
 eventosRouter.get("/lote", findLoteBySetorController.handle);

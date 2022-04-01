@@ -26,7 +26,8 @@ export class EventosRepositories implements IEventosRepositories {
       relations: [
         "cidade",
         "setores",
-        "vendas"
+        "setores.lotes"
+        // "vendas"
       ]
     });
   }
