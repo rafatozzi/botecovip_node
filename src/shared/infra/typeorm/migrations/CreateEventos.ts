@@ -35,6 +35,7 @@ export class CreateEventos1648299318104 implements MigrationInterface {
                 {
                     name: "inicio_vendas",
                     type: "timestamp",
+                    isNullable: true,
                     default: null
                 },
                 {

@@ -3,9 +3,9 @@ import { DataSource } from "typeorm";
 export const AppDataSource = new DataSource({
   type: "mysql",
   port: 3306,
-  host: "192.168.57.16",
-  username: "botecovip",
-  password: "botecovip",
+  host: "localhost",
+  username: "root",
+  password: "root",
   database: "botecovip",
   synchronize: false,
   // logging: false,

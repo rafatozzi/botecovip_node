@@ -21,7 +21,7 @@ export class CreateEventosSetorLote1648304809985 implements MigrationInterface {
                 },
                 {
                     name: "qtd_total",
-                    type: "number",
+                    type: "int",
                     default: 0
                 },
                 {
