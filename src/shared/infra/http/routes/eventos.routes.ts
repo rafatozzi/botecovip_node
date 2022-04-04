@@ -35,7 +35,7 @@ const findVendasByEventoController = new FindVendasByEventoController();
 const uploadImageController = new UploadImageController();
 
 
-eventosRouter.post("/", EnsureAuthenticated, createEventoController.handle);
+eventosRouter.post("/", createEventoController.handle);
 eventosRouter.post("/setor", EnsureAuthenticated, createEventoSetorController.handle);
 eventosRouter.post("/lote", EnsureAuthenticated, createEventoSetorLoteController.handle);
 eventosRouter.post("/venda", createEventoVendaController.handle);

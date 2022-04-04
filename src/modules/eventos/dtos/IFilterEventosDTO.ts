@@ -5,4 +5,5 @@ export interface IFilterEventosDTO {
   cidades?: string[];
   data?: Date;
   inicioVendas?: Date;
+  inicioVendasAte?: Date;
 }
