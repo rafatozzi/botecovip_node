@@ -6,4 +6,5 @@ export interface IFilterEventosDTO {
   data?: Date;
   inicioVendas?: Date;
   inicioVendasAte?: Date;
+  inicioVendasDepois?: Date;
 }

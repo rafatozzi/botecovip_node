@@ -1,4 +1,4 @@
-import { In, Like, Repository, LessThanOrEqual } from "typeorm";
+import { In, Like, Repository, LessThanOrEqual, MoreThan } from "typeorm";
 import { AppDataSource } from "../../../../../shared/infra/typeorm";
 import { ICreateEventoDTO } from "../../../dtos/ICreateEventoDTO";
 import { IFilterEventosDTO } from "../../../dtos/IFilterEventosDTO";
@@ -49,7 +49,10 @@ export class EventosRepositories implements IEventosRepositories {
         where = { ...where, inicio_vendas: pesquisa.inicioVendas };
 
       if (pesquisa.inicioVendasAte)
-        where = { ...where, inicio_vendas: LessThanOrEqual(pesquisa.inicioVendas) };
+        where = { ...where, inicio_vendas: LessThanOrEqual(pesquisa.inicioVendasAte) };
+
+      if (pesquisa.inicioVendasDepois)
+        where = { ...where, inicio_vendas: MoreThan(pesquisa.inicioVendasDepois) };
 
       if (pesquisa.local)
         where = { ...where, inicio_vendas: Like(`%${pesquisa.inicioVendas}%`) };
