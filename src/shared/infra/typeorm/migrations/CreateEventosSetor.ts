@@ -40,7 +40,8 @@ export class CreateEventosSetor1648300405226 implements MigrationInterface {
                 },
                 {
                     name: "excluir",
-                    type: "boolean"
+                    type: "boolean",
+                    default: false
                 },
                 {
                     name: "created_at",

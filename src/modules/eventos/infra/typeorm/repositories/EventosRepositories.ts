@@ -22,7 +22,13 @@ export class EventosRepositories implements IEventosRepositories {
 
   async findById(id: string): Promise<Eventos> {
     return await this.repository.findOne({
-      where: { id },
+      where: {
+        id,
+        setores: {
+          excluir: false,
+          lotes: { excluir: false }
+        }
+      },
       relations: [
         "cidade",
         "setores",

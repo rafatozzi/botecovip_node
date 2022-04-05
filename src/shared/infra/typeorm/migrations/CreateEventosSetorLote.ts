@@ -36,7 +36,8 @@ export class CreateEventosSetorLote1648304809985 implements MigrationInterface {
                 },
                 {
                     name: "excluir",
-                    type: "boolean"
+                    type: "boolean",
+                    default: false
                 },
                 {
                     name: "created_at",
