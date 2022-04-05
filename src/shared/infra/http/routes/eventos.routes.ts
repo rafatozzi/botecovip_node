@@ -40,6 +40,7 @@ eventosRouter.post("/setor", EnsureAuthenticated, createEventoSetorController.ha
 eventosRouter.post("/lote", EnsureAuthenticated, createEventoSetorLoteController.handle);
 eventosRouter.post("/venda", createEventoVendaController.handle);
 eventosRouter.post("/list", findAllEventosController.handle);
+eventosRouter.post("/vendas/list", findVendasByEventoController.handle);
 
 eventosRouter.delete("/", EnsureAuthenticated, deleteEventoController.handle);
 eventosRouter.delete("/setor", EnsureAuthenticated, deleteEventoSetorController.handle);
