@@ -1,6 +1,7 @@
 import { Router } from "express";
 import multer from "multer";
 import uploadConfig from "../../../../config/upload";
+import { CountVendasLoteController } from "../../../../modules/eventos/useCases/countVendasLote/CountVendasLoteController";
 
 import { CreateEventoController } from "../../../../modules/eventos/useCases/createEvento/CreateEventoController";
 import { CreateEventoSetorController } from "../../../../modules/eventos/useCases/createEventoSetor/CreateEventoSetorController";
@@ -33,6 +34,7 @@ const findLoteBySetorController = new FindLoteBySetorController();
 const findSetoresByEventoController = new FindSetoresByEventoController();
 const findVendasByEventoController = new FindVendasByEventoController();
 const uploadImageController = new UploadImageController();
+const countVendasLoteController = new CountVendasLoteController();
 
 
 eventosRouter.post("/", createEventoController.handle);
@@ -41,6 +43,7 @@ eventosRouter.post("/lote", EnsureAuthenticated, createEventoSetorLoteController
 eventosRouter.post("/venda", createEventoVendaController.handle);
 eventosRouter.post("/list", findAllEventosController.handle);
 eventosRouter.post("/vendas/list", findVendasByEventoController.handle);
+eventosRouter.post("/vendas/count", countVendasLoteController.handle);
 
 eventosRouter.delete("/", EnsureAuthenticated, deleteEventoController.handle);
 eventosRouter.delete("/setor", EnsureAuthenticated, deleteEventoSetorController.handle);

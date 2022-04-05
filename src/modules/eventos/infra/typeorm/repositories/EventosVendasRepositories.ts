@@ -48,6 +48,15 @@ export class EventosVendasRepositories implements IEventosVendasRepositories {
     }
   }
 
+  async countVendasLote(id: string): Promise<number> {
+    const count = await this.repository.count({
+      where: { id_evento_setor_lote: id },
+      order: { created_at: "ASC" }
+    });
+
+    return count;
+  }
+
   async deleteEventoVenda(id: string): Promise<void> {
     await this.repository.delete(id);
   }

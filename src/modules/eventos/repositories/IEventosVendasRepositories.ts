@@ -6,5 +6,6 @@ export interface IEventosVendasRepositories {
   create(data: ICreateEventosVendasDTO): Promise<EventosVendas>;
   findById(id: string): Promise<EventosVendas>;
   findByEvento(id: string): Promise<IListEventoVendasDTO>;
+  countVendasLote(id: string): Promise<number>;
   deleteEventoVenda(id: string): Promise<void>;
 }
