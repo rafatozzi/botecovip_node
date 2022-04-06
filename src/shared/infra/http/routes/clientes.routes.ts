@@ -17,9 +17,9 @@ clienteRouter.get("/", findAll.handle);
 
 clienteRouter.post("/login", authenticateCliente.handle);
 
-clienteRouter.get("/:id", findById.handle);
-
 clienteRouter.get("/phone/:telefone", findTelefone.handle);
+
+clienteRouter.get("/:id", findById.handle);
 
 clienteRouter.post("/", createCliente.handle);
 

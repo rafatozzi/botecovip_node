@@ -20,7 +20,7 @@ export class ClientesRepositories implements IClientesRepositories {
       where: { telefone }
     });
 
-    return ClienteMap.toDTO(result);
+    return result ? ClienteMap.toDTO(result) : null;
     // return result;
   }
 
@@ -37,7 +37,7 @@ export class ClientesRepositories implements IClientesRepositories {
       where: { id }
     });
 
-    return ClienteMap.toDTO(result);
+    return result ? ClienteMap.toDTO(result) : null;
   }
 
   async findAll(pesquisa?: IFilterClienteDTO, limit?: number, cursor?: number): Promise<IListClientes> {
