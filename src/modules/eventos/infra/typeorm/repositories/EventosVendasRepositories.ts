@@ -31,10 +31,15 @@ export class EventosVendasRepositories implements IEventosVendasRepositories {
     });
   }
 
-  async findByEvento(id: string): Promise<IListEventoVendasDTO> {
+  async findByEvento(id: string, lote?: string): Promise<IListEventoVendasDTO> {
+
+    let where: any = { id_evento: id };
+
+    if (lote)
+      where = { ...where, id_evento_setor_lote: lote };
 
     const [result, total] = await this.repository.findAndCount({
-      where: { id_evento: id },
+      where,
       order: { created_at: "ASC" },
       relations: [
         "cliente",
