@@ -15,13 +15,13 @@ export class ClientesRepositories implements IClientesRepositories {
     this.repository = AppDataSource.getRepository(Clientes);
   }
 
-  async findTelefone(telefone: number): Promise<Clientes> {
+  async findTelefone(telefone: number): Promise<IClienteResponseDTO> {
     const result = await this.repository.findOne({
       where: { telefone }
     });
 
-    // return ClienteMap.toDTO(result);
-    return result;
+    return ClienteMap.toDTO(result);
+    // return result;
   }
 
   async create(data: ICreateClientesDTO): Promise<Clientes> {

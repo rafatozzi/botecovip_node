@@ -8,5 +8,5 @@ export interface IClientesRepositories {
   create(data: ICreateClientesDTO): Promise<Clientes>;
   findById(id: string): Promise<IClienteResponseDTO>;
   findAll(pesquisa?: IFilterClienteDTO, limit?: number, cursor?: number): Promise<IListClientes>;
-  findTelefone(telefone: number): Promise<Clientes>;
+  findTelefone(telefone: number): Promise<IClienteResponseDTO>;
 }
