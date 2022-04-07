@@ -24,6 +24,14 @@ export class ClientesRepositories implements IClientesRepositories {
     // return result;
   }
 
+  async findTelefoneToLogin(telefone: number): Promise<Clientes> {
+    const result = await this.repository.findOne({
+      where: { telefone }
+    });
+
+    return result;
+  }
+
   async create(data: ICreateClientesDTO): Promise<IClienteResponseDTO> {
     const cliente = this.repository.create({ ...data });
 

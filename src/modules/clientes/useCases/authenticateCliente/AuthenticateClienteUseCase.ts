@@ -13,7 +13,7 @@ export class AuthenticateClienteUseCase {
   async execute(telefone: number, senha: string): Promise<IClienteResponseDTO> {
     const clientesRepositories = new ClientesRepositories();
 
-    const rsCliente = await clientesRepositories.findTelefone(telefone);
+    const rsCliente = await clientesRepositories.findTelefoneToLogin(telefone);
 
     if (!rsCliente)
       throw new AppError("Cliente não encontrado");
