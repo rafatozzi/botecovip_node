@@ -25,7 +25,7 @@ export class EventosVendas {
   valor: number;
 
   @Column()
-  forma_pgto: number;
+  forma_pgto: string;
 
   @CreateDateColumn()
   created_at: Date;

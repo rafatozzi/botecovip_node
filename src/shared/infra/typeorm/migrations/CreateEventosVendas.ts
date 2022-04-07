@@ -35,7 +35,7 @@ export class CreateEventosVendas1648305274912 implements MigrationInterface {
                 },
                 {
                     name: "forma_pgto",
-                    type: "int(2)"
+                    type: "varchar(50)"
                 },
                 {
                     name: "created_at",

@@ -5,5 +5,5 @@ export interface ICreateEventosVendasDTO {
   id_cliente: string;
   nr_lugar: number;
   valor: number;
-  forma_pgto: number;
+  forma_pgto: string;
 }
