@@ -8,9 +8,9 @@ services:
     ports:
       - 3001:3333
     volumes:
-      - app:/usr/app
+      - appbotecovip:/usr/app
       - /usr/app/node_modules
 
 volumes:
-  app:
+  appbotecovip:
     driver: local
