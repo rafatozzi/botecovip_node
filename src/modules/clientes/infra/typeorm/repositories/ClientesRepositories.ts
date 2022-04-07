@@ -24,12 +24,12 @@ export class ClientesRepositories implements IClientesRepositories {
     // return result;
   }
 
-  async create(data: ICreateClientesDTO): Promise<Clientes> {
+  async create(data: ICreateClientesDTO): Promise<IClienteResponseDTO> {
     const cliente = this.repository.create({ ...data });
 
     await this.repository.save(cliente);
 
-    return cliente;
+    return ClienteMap.toDTO(cliente);
   }
 
   async findById(id: string): Promise<IClienteResponseDTO> {
