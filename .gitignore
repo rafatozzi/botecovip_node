@@ -2,3 +2,4 @@ node_modules
 redis_data
 ormconfig.json
 archives/images/*.jpg
+src/shared/infra/typeorm/index.ts

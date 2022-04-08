@@ -8,7 +8,7 @@ export const AppDataSource = new DataSource({
   password: "root",
   database: "botecovip",
   synchronize: false,
-  // logging: false, // AUTO CREATE TABLES
+  // logging: false, // Auto create tables
   migrations: [
     "./src/shared/infra/typeorm/migrations/*.ts"
   ],
