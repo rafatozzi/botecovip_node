@@ -24,10 +24,10 @@ export class EventosRepositories implements IEventosRepositories {
     return await this.repository.findOne({
       where: {
         id,
-        setores: {
-          excluir: false,
-          lotes: { excluir: false }
-        }
+        // setores: {
+        //   excluir: false,
+        //   lotes: { excluir: false }
+        // }
       },
       relations: [
         "cidade",
