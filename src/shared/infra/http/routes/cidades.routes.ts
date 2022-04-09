@@ -12,7 +12,7 @@ const deleteCidade = new DeleteCidadeController();
 const findAllCidades = new FindAllCidadesControllet();
 const findCidadeById = new FindCidadeByIdController();
 
-cidadesRouter.get("/", EnsureAuthenticated, findAllCidades.handle);
+cidadesRouter.get("/", findAllCidades.handle);
 cidadesRouter.get("/:id", EnsureAuthenticated, findCidadeById.handle);
 
 cidadesRouter.post("/", EnsureAuthenticated, createCidade.handle);
