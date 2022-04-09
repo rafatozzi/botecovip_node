@@ -7,10 +7,10 @@ import { EventosRepositories } from "../../infra/typeorm/repositories/EventosRep
 export class FindAllEventosUseCase {
   constructor() { }
 
-  async execute(pesquisa?: IFilterEventosDTO, limit?: number, cursor?: number): Promise<IListEventosDTO> {
+  async execute(pesquisa?: IFilterEventosDTO, limit?: number, cursor?: number, orderType?: "DESC" | "ASC"): Promise<IListEventosDTO> {
     const repositories = new EventosRepositories();
 
-    const result = await repositories.findAllEventos(pesquisa, limit, cursor);
+    const result = await repositories.findAllEventos(pesquisa, limit, cursor, orderType);
 
     return result;
   }

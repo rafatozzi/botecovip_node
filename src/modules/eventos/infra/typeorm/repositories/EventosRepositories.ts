@@ -38,9 +38,10 @@ export class EventosRepositories implements IEventosRepositories {
     });
   }
 
-  async findAllEventos(pesquisa?: IFilterEventosDTO, limit?: number, cursor?: number): Promise<IListEventosDTO> {
+  async findAllEventos(pesquisa?: IFilterEventosDTO, limit?: number, cursor?: number, orderType?: "DESC" | "ASC"): Promise<IListEventosDTO> {
     const limitPage = limit ? limit : 25;
     const cursorPage = cursor ? cursor : 0;
+    const typeOrder = orderType ? orderType : "DESC";
 
     let where: any = { excluir: false };
 
@@ -71,7 +72,7 @@ export class EventosRepositories implements IEventosRepositories {
     }
 
     const [result, total] = await this.repository.findAndCount({
-      order: { data: "DESC" },
+      order: { data: typeOrder },
       take: limitPage,
       skip: cursorPage,
       where,

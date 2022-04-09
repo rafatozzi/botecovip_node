@@ -6,6 +6,6 @@ import { Eventos } from "../infra/typeorm/entities/Eventos";
 export interface IEventosRepositories {
   create(data: ICreateEventoDTO): Promise<Eventos>;
   findById(id: string): Promise<Eventos>;
-  findAllEventos(pesquisa?: IFilterEventosDTO, limit?: number, cursor?: number): Promise<IListEventosDTO>;
+  findAllEventos(pesquisa?: IFilterEventosDTO, limit?: number, cursor?: number, orderType?: "DESC" | "ASC"): Promise<IListEventosDTO>;
   deleteEvento(id: string): Promise<void>;
 }
