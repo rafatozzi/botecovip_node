@@ -27,6 +27,12 @@ export class EventosVendas {
   @Column()
   forma_pgto: string;
 
+  @Column()
+  order_id: string;
+
+  @Column()
+  status: string;
+
   @CreateDateColumn()
   created_at: Date;
 

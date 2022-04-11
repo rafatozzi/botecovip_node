@@ -6,4 +6,6 @@ export interface ICreateEventosVendasDTO {
   nr_lugar: number;
   valor: number;
   forma_pgto: string;
+  order_id?: string;
+  status?: string;
 }
