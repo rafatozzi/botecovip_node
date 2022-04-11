@@ -31,11 +31,12 @@ app.use("/eventoImg", express.static(`${upload.tmpFolder}/images`));
 app.use(router);
 
 app.get("/runMigrations", (request: Request, response: Response) => {
+
   AppDataSource.runMigrations();
+  return response.status(200).send("Migration done!");
 
   // AppDataSource.undoLastMigration(); // revert migration
-
-  return response.status(200).send("Migration done!");
+  // return response.status(200).send("Migration reverted!");
 });
 
 app.use((err: Error, request: Request, response: Response, next: NextFunction) => {
