@@ -38,6 +38,7 @@ app.use((request: Request, response: Response, next: NextFunction) => {
   return next();
 });
 
+app.use("/bannerImg", express.static(`${upload.tmpFolder}/banners`));
 app.use("/eventoImg", express.static(`${upload.tmpFolder}/images`));
 
 app.use(router);
