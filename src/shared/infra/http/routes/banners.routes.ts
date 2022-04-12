@@ -1,7 +1,7 @@
 import { Router } from "express";
 import multer from "multer";
 import uploadConfig from "../../../../config/upload";
-import { UpdateBannerController } from "../../../../modules/banners/useCases/changeVisibleBanner/updateBannerController";
+import { UpdateBannerController } from "../../../../modules/banners/useCases/updateVisibleBanner/UpdateBannerController";
 import { CreateBannerController } from "../../../../modules/banners/useCases/createBanner/CreateBannerController";
 import { FindAllBannersController } from "../../../../modules/banners/useCases/findAllBanners/FindAllBannersController";
 import { EnsureAuthenticated } from "../middlewares/ensureAuthenticated";
