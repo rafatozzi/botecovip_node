@@ -1,6 +1,5 @@
 import { inject, injectable } from "tsyringe";
 import { IStorageProvider } from "../../../../shared/container/providers/StorageProvider/IStorageProvider";
-import { EventosRepositories } from "../../infra/typeorm/repositories/EventosRepositories";
 import { existsSync } from "fs";
 import { resolve } from "path";
 import upload from "../../../../config/upload";
