@@ -9,6 +9,7 @@ import { IEventosRepositories } from "../../modules/eventos/repositories/IEvento
 import { IEventosSetorLoteRepositories } from "../../modules/eventos/repositories/IEventosSetorLoteRepositories";
 import { IEventosSetorRepositories } from "../../modules/eventos/repositories/IEventosSetorRepositories";
 import { IEventosVendasRepositories } from "../../modules/eventos/repositories/IEventosVendasRepositories";
+import { IBannersRepositories } from "../../modules/banners/repositories/IBannersRepositories";
 
 
 // REPOSITORIES
@@ -19,6 +20,7 @@ import { EventosRepositories } from "../../modules/eventos/infra/typeorm/reposit
 import { EventosSetorLoteRepositories } from "../../modules/eventos/infra/typeorm/repositories/EventosSetorLoteRepositories";
 import { EventosSetorRepositories } from "../../modules/eventos/infra/typeorm/repositories/EventosSetorRepositories";
 import { EventosVendasRepositories } from "../../modules/eventos/infra/typeorm/repositories/EventosVendasRepositories";
+import { BannersRepositories } from "../../modules/banners/infra/typeorm/repositories/BannersRepositories";
 
 import { IDateProvider } from "./providers/DateProvider/IDateProvider";
 import { DaysJsDateProvider } from "./providers/DateProvider/implementations/DayjsDateProvider";
@@ -28,7 +30,6 @@ import { LocalStorageProvider } from "./providers/StorageProvider/implementation
 import { ICurrencyFormatterProvider } from "./providers/CurrencyFormatter/ICurrencyFormatterProvider";
 import { CurrencyFormatterProvider } from "./providers/CurrencyFormatter/implementations/CurrencyFormatterProvider";
 
-
 container.registerSingleton<IUsersRepositories>("UsersRepositories", delay(() => UsersRepositories));
 container.registerSingleton<IUseTokensRepositories>("UserTokensRepositories", delay(() => UserTokensRepositories));
 container.registerSingleton<ICidadesRepositories>("CidadesRepositories", delay(() => CidadesRepositories));
@@ -36,6 +37,7 @@ container.registerSingleton<IEventosRepositories>("EventosRepositories", delay((
 container.registerSingleton<IEventosSetorLoteRepositories>("EventosSetorLoteRepositories", delay(() => EventosSetorLoteRepositories));
 container.registerSingleton<IEventosSetorRepositories>("EventosSetorRepositories", delay(() => EventosSetorRepositories));
 container.registerSingleton<IEventosVendasRepositories>("EventosVendasRepositories", delay(() => EventosVendasRepositories));
+container.registerSingleton<IBannersRepositories>("BannersRepositories", delay(() => BannersRepositories));
 
 container.registerSingleton<IDateProvider>("DaysJsDateProvider", delay(() => DaysJsDateProvider));
 container.registerSingleton<ICurrencyFormatterProvider>("CurrencyFormatterProvider", delay(() => CurrencyFormatterProvider));
