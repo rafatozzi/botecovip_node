@@ -1,4 +1,4 @@
-import { Repository } from "typeorm";
+import { Repository, Not, Equal } from "typeorm";
 import { AppDataSource } from "../../../../../shared/infra/typeorm";
 import { ICreateEventosVendasDTO } from "../../../dtos/ICreateEventosVendasDTO";
 import { IListEventoVendasDTO } from "../../../dtos/IListEventoVendasDTO";
@@ -55,7 +55,10 @@ export class EventosVendasRepositories implements IEventosVendasRepositories {
 
   async countVendasLote(id: string): Promise<number> {
     const count = await this.repository.count({
-      where: { id_evento_setor_lote: id },
+      where: {
+        id_evento_setor_lote: id,
+        status: Not(Equal("paid"))
+      },
       order: { created_at: "ASC" }
     });
 
