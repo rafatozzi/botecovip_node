@@ -17,7 +17,7 @@ export class EventosVendasRepositories implements IEventosVendasRepositories {
       .createQueryBuilder()
       .select("SUM(valor)", "valorVendas")
       .where(
-        `id_evento = :idEvento ${idLote ? "and id_evento_setor_lote = :idLote" : ""}`,
+        `id_evento = :idEvento and (status = "paid" or status = "order.paid") ${idLote ? "and id_evento_setor_lote = :idLote" : ""}`,
         idLote ? { idEvento, idLote } : { idEvento }
       ).getRawOne();
 
