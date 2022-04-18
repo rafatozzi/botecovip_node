@@ -15,6 +15,7 @@ import { FindAllEventosController } from "../../../../modules/eventos/useCases/f
 import { FindEventoByIdController } from "../../../../modules/eventos/useCases/findEventoById/FindEventoByIdController";
 import { FindLoteBySetorController } from "../../../../modules/eventos/useCases/findLoteBySetor/FindLoteBySetorController";
 import { FindSetoresByEventoController } from "../../../../modules/eventos/useCases/findSetoresByEvento/FindSetoresByEventoController";
+import { FindVendasByClienteController } from "../../../../modules/eventos/useCases/findVendasByCliente/FindVendasByClienteController";
 import { FindVendasByEventoController } from "../../../../modules/eventos/useCases/findVendasByEvento/FindVendasByEventoController";
 import { UploadImageController } from "../../../../modules/eventos/useCases/uploadImage/UploadImageController";
 import { EnsureAuthenticated } from "../middlewares/ensureAuthenticated";
@@ -37,6 +38,7 @@ const findVendasByEventoController = new FindVendasByEventoController();
 const uploadImageController = new UploadImageController();
 const countVendasLoteController = new CountVendasLoteController();
 const eventoPaySuccessController = new EventoPaySuccessController();
+const findVendasByClienteController = new FindVendasByClienteController();
 
 
 eventosRouter.post("/", createEventoController.handle);
@@ -46,6 +48,7 @@ eventosRouter.post("/venda", createEventoVendaController.handle);
 eventosRouter.post("/list", findAllEventosController.handle);
 eventosRouter.post("/vendas/list", findVendasByEventoController.handle);
 eventosRouter.post("/vendas/count", countVendasLoteController.handle);
+eventosRouter.post("/vendas/cliente", findVendasByClienteController.handle);
 
 eventosRouter.delete("/", EnsureAuthenticated, deleteEventoController.handle);
 eventosRouter.delete("/setor", EnsureAuthenticated, deleteEventoSetorController.handle);

@@ -12,6 +12,23 @@ export class EventosVendasRepositories implements IEventosVendasRepositories {
     this.repository = AppDataSource.getRepository(EventosVendas);
   }
 
+  async findByCliente(idCliente: string): Promise<IListEventoVendasDTO> {
+
+    const [result, total] = await this.repository.findAndCount({
+      where: { id_cliente: idCliente },
+      order: { created_at: "DESC" },
+      relations: [
+        "evento",
+        "lote"
+      ]
+    })
+
+    return {
+      result,
+      total
+    };
+  }
+
   async updateStatusByOrderId(orderId: string, newStatus: string): Promise<void> {
     await this.repository
       .createQueryBuilder()
