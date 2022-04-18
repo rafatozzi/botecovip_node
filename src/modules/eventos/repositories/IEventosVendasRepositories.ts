@@ -11,4 +11,5 @@ export interface IEventosVendasRepositories {
   updateStatusByOrderId(orderId: string, newStatus: string): Promise<void>;
   countVendasLote(id: string): Promise<number>;
   deleteEventoVenda(id: string): Promise<void>;
+  totalVendas(idEvento: string, idLote?: string): Promise<number>;
 }

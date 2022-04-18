@@ -12,6 +12,18 @@ export class EventosVendasRepositories implements IEventosVendasRepositories {
     this.repository = AppDataSource.getRepository(EventosVendas);
   }
 
+  async totalVendas(idEvento: string, idLote?: string): Promise<number> {
+    const { valorVendas } = await this.repository
+      .createQueryBuilder()
+      .select("SUM(valor)", "valorVendas")
+      .where(
+        `id_evento = :idEvento ${idLote ? "and id_evento_setor_lote = :idLote" : ""}`,
+        idLote ? { idEvento, idLote } : { idEvento }
+      ).getRawOne();
+
+    return parseFloat(valorVendas);
+  }
+
   async findByCliente(idCliente: string): Promise<IListEventoVendasDTO> {
     const limitPage = 25;
     const cursorPage = 0;
