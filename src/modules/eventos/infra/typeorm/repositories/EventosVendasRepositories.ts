@@ -54,13 +54,18 @@ export class EventosVendasRepositories implements IEventosVendasRepositories {
   }
 
   async countVendasLote(id: string): Promise<number> {
-    const count = await this.repository.count({
-      where: {
-        id_evento_setor_lote: id,
-        status: Not(Equal("paid"))
-      },
-      order: { created_at: "ASC" }
-    });
+
+    const count = await this.repository
+      .createQueryBuilder()
+      .where("id_evento_setor_lote = :id and (status = :status1 or status = :status2 or status = :status3 or status = :status4)", {
+        id,
+        status1: "paid",
+        status2: "order.paid",
+        status3: "waiting_payment",
+        status4: "order.waiting_payment"
+      })
+      .orderBy("created_at", "ASC")
+      .getCount();
 
     return count;
   }
