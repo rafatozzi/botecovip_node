@@ -10,6 +10,6 @@ export class FindVendasByClienteController {
 
     const result = await useCase.execute(idCliente);
 
-    return response.status(200).json();
+    return response.status(200).json(result);
   }
 }
