@@ -7,7 +7,7 @@ export interface IEventosVendasRepositories {
   findById(id: string): Promise<EventosVendas>;
   findByEvento(id: string, lote?: string): Promise<IListEventoVendasDTO>;
   findByOrderId(id: string): Promise<EventosVendas[]>;
-  updateByOrderId(orderId: string, newStatus: string): Promise<void>;
+  updateStatusByOrderId(orderId: string, newStatus: string): Promise<void>;
   countVendasLote(id: string): Promise<number>;
   deleteEventoVenda(id: string): Promise<void>;
 }
