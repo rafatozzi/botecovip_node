@@ -13,6 +13,8 @@ export class EventosVendasRepositories implements IEventosVendasRepositories {
   }
 
   async findByCliente(idCliente: string): Promise<IListEventoVendasDTO> {
+    const limitPage = 25;
+    const cursorPage = 0;
 
     const [result, total] = await this.repository.findAndCount({
       where: { id_cliente: idCliente },
@@ -20,7 +22,9 @@ export class EventosVendasRepositories implements IEventosVendasRepositories {
       relations: [
         "evento",
         "lote"
-      ]
+      ],
+      take: limitPage,
+      skip: cursorPage,
     })
 
     return {
