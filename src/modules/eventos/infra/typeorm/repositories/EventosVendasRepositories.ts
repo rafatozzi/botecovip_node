@@ -12,6 +12,23 @@ export class EventosVendasRepositories implements IEventosVendasRepositories {
     this.repository = AppDataSource.getRepository(EventosVendas);
   }
 
+  async updateStatusByOrderId(orderId: string, newStatus: string): Promise<void> {
+    await this.repository
+      .createQueryBuilder()
+      .update()
+      .set({ status: newStatus })
+      .where("order_id = :orderId", { orderId })
+      .execute();
+  }
+
+  async findByOrderId(id: string): Promise<EventosVendas[]> {
+    return await this.repository.find({
+      where: {
+        order_id: id
+      }
+    })
+  }
+
   async create(data: ICreateEventosVendasDTO): Promise<EventosVendas> {
     const item = this.repository.create(data);
 
@@ -54,7 +71,6 @@ export class EventosVendasRepositories implements IEventosVendasRepositories {
   }
 
   async countVendasLote(id: string): Promise<number> {
-
     const count = await this.repository
       .createQueryBuilder()
       .where("id_evento_setor_lote = :id and (status = :status1 or status = :status2 or status = :status3 or status = :status4)", {
