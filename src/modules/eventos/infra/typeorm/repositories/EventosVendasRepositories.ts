@@ -20,7 +20,9 @@ export class EventosVendasRepositories implements IEventosVendasRepositories {
       where: { id_cliente: idCliente },
       order: { created_at: "DESC" },
       relations: [
-        "evento"
+        "evento",
+        "lote",
+        "lote.setor"
       ],
       take: limitPage,
       skip: cursorPage,
