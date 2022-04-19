@@ -10,8 +10,6 @@ export class GetTotalVendasController {
 
     const result = await useCase.execute(idEvento, idLote);
 
-    console.log(result);
-
     return response.status(200).json(result);
   }
 }
