@@ -21,7 +21,7 @@ export class EventosVendasRepositories implements IEventosVendasRepositories {
         idLote ? { idEvento, idLote } : { idEvento }
       ).getRawOne();
 
-    return parseFloat(valorVendas);
+    return valorVendas === null ? 0 : parseFloat(valorVendas);
   }
 
   async findByCliente(idCliente: string): Promise<IListEventoVendasDTO> {
