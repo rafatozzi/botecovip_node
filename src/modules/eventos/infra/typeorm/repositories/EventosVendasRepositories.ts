@@ -1,6 +1,7 @@
-import { Repository, Not, Equal } from "typeorm";
+import { Repository, Not, Equal, IsNull } from "typeorm";
 import { AppDataSource } from "../../../../../shared/infra/typeorm";
 import { ICreateEventosVendasDTO } from "../../../dtos/ICreateEventosVendasDTO";
+import { IFiltersVendasClientes } from "../../../dtos/IFiltersVendasClientes";
 import { IListEventoVendasDTO } from "../../../dtos/IListEventoVendasDTO";
 import { IEventosVendasRepositories } from "../../../repositories/IEventosVendasRepositories";
 import { EventosVendas } from "../entities/EventosVendas";
@@ -24,12 +25,25 @@ export class EventosVendasRepositories implements IEventosVendasRepositories {
     return valorVendas === null ? 0 : parseFloat(valorVendas);
   }
 
-  async findByCliente(idCliente: string): Promise<IListEventoVendasDTO> {
+  async findByCliente(data: IFiltersVendasClientes): Promise<IListEventoVendasDTO> {
     const limitPage = 25;
     const cursorPage = 0;
 
+    let where: any = {
+      order_id: Not(IsNull())
+    };
+
+    if (data.idCliente)
+      where = { ...where, id_cliente: data.idCliente };
+
+    if (data.cpf)
+      where = { ...where, cpf_cliente: data.cpf };
+
+    if (data.email)
+      where = { ...where, email_cliente: data.email };
+
     const [result, total] = await this.repository.findAndCount({
-      where: { id_cliente: idCliente },
+      where,
       order: { created_at: "DESC" },
       relations: [
         "evento",

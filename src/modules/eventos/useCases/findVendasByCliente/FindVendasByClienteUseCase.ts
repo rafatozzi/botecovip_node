@@ -1,4 +1,5 @@
 import { injectable } from "tsyringe";
+import { IFiltersVendasClientes } from "../../dtos/IFiltersVendasClientes";
 import { IListEventoVendasDTO } from "../../dtos/IListEventoVendasDTO";
 import { EventosVendasRepositories } from "../../infra/typeorm/repositories/EventosVendasRepositories";
 
@@ -6,10 +7,10 @@ import { EventosVendasRepositories } from "../../infra/typeorm/repositories/Even
 export class FindVendasByClienteUseCase {
   constructor() { }
 
-  async execute(idCliente: string): Promise<IListEventoVendasDTO> {
+  async execute(data: IFiltersVendasClientes): Promise<IListEventoVendasDTO> {
     const repository = new EventosVendasRepositories();
 
-    const list = await repository.findByCliente(idCliente);
+    const list = await repository.findByCliente(data);
 
     return list;
   }
