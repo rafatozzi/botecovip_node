@@ -19,6 +19,12 @@ export class EventosVendas {
   id_cliente: string;
 
   @Column()
+  cpf_cliente: number;
+
+  @Column()
+  email_cliente: string;
+
+  @Column()
   nr_lugar: number;
 
   @Column()
@@ -32,6 +38,9 @@ export class EventosVendas {
 
   @Column()
   status: string;
+
+  @Column()
+  entregue: boolean;
 
   @CreateDateColumn()
   created_at: Date;

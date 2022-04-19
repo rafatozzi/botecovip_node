@@ -8,4 +8,7 @@ export interface ICreateEventosVendasDTO {
   forma_pgto: string;
   order_id?: string;
   status?: string;
+  entregue?: boolean;
+  cpf_cliente?: number;
+  email_cliente?: string;
 }
