@@ -46,6 +46,7 @@ export class EventosVendasRepositories implements IEventosVendasRepositories {
       where,
       order: { created_at: "DESC" },
       relations: [
+        "cliente",
         "evento",
         "lote",
         "lote.setor"
