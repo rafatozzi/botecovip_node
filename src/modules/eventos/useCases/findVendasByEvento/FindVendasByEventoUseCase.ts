@@ -9,7 +9,7 @@ export class FindVendasByEventoUseCase {
   async execute(id: string, lote?: string): Promise<IListEventoVendasDTO> {
     const repositories = new EventosVendasRepositories();
 
-    const result = await repositories.findByEvento(id);
+    const result = await repositories.findByEvento(id, lote);
 
     return result;
   }
