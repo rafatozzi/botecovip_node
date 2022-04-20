@@ -109,7 +109,8 @@ export class EventosVendasRepositories implements IEventosVendasRepositories {
       order: { created_at: "ASC" },
       relations: [
         "cliente",
-        "lote"
+        "lote",
+        "lote.setor"
       ]
     });
 
