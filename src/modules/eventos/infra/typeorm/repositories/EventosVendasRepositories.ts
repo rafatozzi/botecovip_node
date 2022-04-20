@@ -92,6 +92,7 @@ export class EventosVendasRepositories implements IEventosVendasRepositories {
       relations: [
         "cliente",
         "evento",
+        "evento.cidade",
         "lote",
         "lote.setor"
       ]
