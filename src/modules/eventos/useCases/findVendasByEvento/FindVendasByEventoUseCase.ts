@@ -6,10 +6,10 @@ import { EventosVendasRepositories } from "../../infra/typeorm/repositories/Even
 export class FindVendasByEventoUseCase {
   constructor() { }
 
-  async execute(id: string, lote?: string, setor?: string): Promise<IListEventoVendasDTO> {
+  async execute(id: string, lote?: string, setor?: string, status?: string): Promise<IListEventoVendasDTO> {
     const repositories = new EventosVendasRepositories();
 
-    const result = await repositories.findByEvento(id, lote, setor);
+    const result = await repositories.findByEvento(id, lote, setor, status);
 
     return result;
   }
