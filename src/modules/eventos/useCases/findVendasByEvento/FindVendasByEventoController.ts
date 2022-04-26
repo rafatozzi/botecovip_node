@@ -4,11 +4,11 @@ import { FindVendasByEventoUseCase } from "./FindVendasByEventoUseCase";
 
 export class FindVendasByEventoController {
   async handle(request: Request, response: Response): Promise<Response> {
-    const { id, lote } = request.body;
+    const { id, lote, setor } = request.body;
 
     const useCase = container.resolve(FindVendasByEventoUseCase);
 
-    const result = await useCase.execute(id, lote);
+    const result = await useCase.execute(id, lote, setor);
 
     return response.status(200).json(result);
   }

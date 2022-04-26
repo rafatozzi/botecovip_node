@@ -6,7 +6,7 @@ import { EventosVendas } from "../infra/typeorm/entities/EventosVendas";
 export interface IEventosVendasRepositories {
   create(data: ICreateEventosVendasDTO): Promise<EventosVendas>;
   findById(id: string): Promise<EventosVendas>;
-  findByEvento(id: string, lote?: string): Promise<IListEventoVendasDTO>;
+  findByEvento(id: string, lote?: string, setor?: string): Promise<IListEventoVendasDTO>;
   findByCliente(data: IFiltersVendasClientes): Promise<IListEventoVendasDTO>;
   findByOrderId(id: string): Promise<EventosVendas[]>;
   updateStatusByOrderId(orderId: string, newStatus: string): Promise<void>;
