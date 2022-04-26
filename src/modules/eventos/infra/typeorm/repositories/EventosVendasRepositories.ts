@@ -107,7 +107,7 @@ export class EventosVendasRepositories implements IEventosVendasRepositories {
       where = { ...where, id_evento_setor_lote: lote };
 
     if (setor)
-      where = { ...where, lote: { id_evento_setor: setor } };
+      where = { ...where, lote: { id_evento_setor: setor }, status: [Like("%paid"), Like("%peding"), Like("%waiting%")] };
 
     if (status)
       where = { ...where, status: Like(`%${status}`) };
