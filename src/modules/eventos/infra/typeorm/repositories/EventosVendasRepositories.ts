@@ -1,4 +1,4 @@
-import { Repository, Not, Equal, IsNull, Like } from "typeorm";
+import { Repository, Not, IsNull, Like } from "typeorm";
 import { AppDataSource } from "../../../../../shared/infra/typeorm";
 import { ICreateEventosVendasDTO } from "../../../dtos/ICreateEventosVendasDTO";
 import { IFiltersVendasClientes } from "../../../dtos/IFiltersVendasClientes";
@@ -101,25 +101,24 @@ export class EventosVendasRepositories implements IEventosVendasRepositories {
 
   async findByEvento(id: string, lote?: string, setor?: string, status?: string): Promise<IListEventoVendasDTO> {
 
-    let where: any = { id_evento: id };
+
+    let where: string = `EventosVendas.id_evento = "${id}"`;
 
     if (lote)
-      where = { ...where, id_evento_setor_lote: lote };
+      where = `${where} and EventosVendas.id_evento_setor_lote = "${lote}"`;
 
     if (setor)
-      where = { ...where, lote: { id_evento_setor: setor }, status: [Like("%paid"), Like("%peding"), Like("%waiting%")] };
+      where = `${where} and lote.id_evento_setor = "${setor}" and ( EventosVendas.status LIKE "%paid" or  EventosVendas.status LIKE "%peding" or  EventosVendas.status LIKE "%waiting%" )`;
 
     if (status)
-      where = { ...where, status: Like(`%${status}`) };
+      where = `${where} and EventosVendas.status LIKE "%${status}"`;
 
-    const [result, total] = await this.repository.findAndCount({
-      where,
-      order: { created_at: "ASC" },
-      relations: [
-        "cliente",
-        "lote"
-      ]
-    });
+    const [result, total] = await this.repository
+      .createQueryBuilder()
+      .where(where)
+      .leftJoin("clientes", "cliente", "EventosVendas.id_cliente = cliente.id")
+      .leftJoin("eventos_setor_lote", "lote", "EventosVendas.id_evento_setor_lote = lote.id")
+      .getManyAndCount();
 
     return {
       result,
